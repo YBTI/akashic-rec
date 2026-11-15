@@ -7,14 +7,14 @@ const provider = () => (process.env.AI_PROVIDER === 'anthropic' ? 'anthropic' : 
 export function questionModel() {
   return provider() === 'anthropic'
     ? anthropic(process.env.ANTHROPIC_QUESTION_MODEL || 'claude-haiku-5-5')
-    : google(process.env.GEMINI_QUESTION_MODEL || 'gemini-2.5-flash');
+    : google(process.env.GEMINI_QUESTION_MODEL || 'gemini-3.8-flash');
 }
 
 /** 記事化用(丁寧なモデル) */
 export function articleModel() {
   return provider() === 'anthropic'
     ? anthropic(process.env.ANTHROPIC_ARTICLE_MODEL || 'claude-sonnet-5-5')
-    : google(process.env.GEMINI_ARTICLE_MODEL || 'gemini-2.5-flash');
+    : google(process.env.GEMINI_ARTICLE_MODEL || 'gemini-3.8-flash');
 }
 
 export function dailyLimit() {
