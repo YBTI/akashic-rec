@@ -19,9 +19,11 @@ export async function POST(req: Request) {
       messages,
       maxOutputTokens: 400,
       temperature: 0.7,
+      onError: ({ error }) => console.error('[interview] AI error:', error),
     });
     return result.toTextStreamResponse();
-  } catch {
+  } catch (e) {
+    console.error('[interview] AI error:', e);
     return json({ error: '質問を用意できませんでした。' }, 500);
   }
 }
