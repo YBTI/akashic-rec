@@ -32,7 +32,8 @@ export async function POST(req: Request) {
       maxOutputTokens: 4000,
     });
     return json(object);
-  } catch {
+  } catch (e) {
+    console.error('[article] AI error:', e);
     return json({ error: '記事にまとめられませんでした。もう一度お試しください。' }, 500);
   }
 }
