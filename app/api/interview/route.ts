@@ -1,9 +1,9 @@
 import { streamText } from 'ai';
-import { questionModel } from '@/lib/ai';
+import { questionModel, fastProviderOptions } from '@/lib/ai';
 import { guardAiRequest, json } from '@/lib/guard';
 import { interviewSystem, INTERVIEW_START } from '@/lib/prompts';
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const g = await guardAiRequest(req);
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       messages,
       maxOutputTokens: 400,
       temperature: 0.7,
+      providerOptions: fastProviderOptions,
       onError: ({ error }) => console.error('[interview] AI error:', error),
     });
     return result.toTextStreamResponse();

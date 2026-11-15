@@ -1,10 +1,10 @@
 import { generateObject } from 'ai';
 import { z } from 'zod';
-import { articleModel } from '@/lib/ai';
+import { articleModel, fastProviderOptions } from '@/lib/ai';
 import { guardAiRequest, json } from '@/lib/guard';
 import { articlePrompt } from '@/lib/prompts';
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const schema = z.object({
   lead: z.string(),
@@ -30,6 +30,7 @@ export async function POST(req: Request) {
       schema,
       prompt: articlePrompt(g.title, g.target, pairs.join('\n\n')),
       maxOutputTokens: 4000,
+      providerOptions: fastProviderOptions,
     });
     return json(object);
   } catch (e) {

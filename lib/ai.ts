@@ -21,3 +21,8 @@ export function dailyLimit() {
   const n = Number(process.env.AI_DAILY_LIMIT);
   return Number.isFinite(n) && n > 0 ? n : 30;
 }
+
+/** Gemini 3 系は既定で「考える」処理が入り遅くなるため最小限にする(Claude 使用時は無視される) */
+export const fastProviderOptions = {
+  google: { thinkingConfig: { thinkingLevel: 'minimal' } },
+};
