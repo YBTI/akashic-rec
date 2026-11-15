@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       model: questionModel(),
       system: interviewSystem(g.title, g.target),
       messages,
-      maxOutputTokens: 400,
+      maxOutputTokens: 1500,
       temperature: 0.7,
       providerOptions: fastProviderOptions,
       onError: ({ error }) => console.error('[interview] AI error:', error),

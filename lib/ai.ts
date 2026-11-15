@@ -24,5 +24,5 @@ export function dailyLimit() {
 
 /** Gemini 3 系は既定で「考える」処理が入り遅くなるため最小限にする(Claude 使用時は無視される) */
 export const fastProviderOptions = {
-  google: { thinkingConfig: { thinkingLevel: 'minimal' } },
+  google: { thinkingConfig: { thinkingLevel: 'low' } },
 };
